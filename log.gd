@@ -1,7 +1,7 @@
 class_name Log
 
 ## Path for the log file; see Save for precise location
-const PATH = "user://log.json"
+const PATH = "user://log"
 ## Change if details of the Log changes
 ## Note this may be kept separate from your project version
 const VERSION = "1.0.0"
@@ -24,13 +24,17 @@ static func init() -> void:
 			## We will update these at every new log
 			"static_memory_usage": null,
 			"memory_info": null,
-			"ticks_msecs": null
+			"ticks_msecs": null,
+			"window_size": null,
+			"screen_size": null,
+			"refresh_rate": null,
+			"fps": null,
 		}
 	}, PATH)
 
 ## Prints and Logs a string
 static func PRINT(string) -> void:
-	Log.LOG(string)
+	Log._log(string)
 	print(string)
 
 ## Prints and Logs a string
@@ -45,7 +49,8 @@ static func CRASH(string) -> void:
 	assert(false, string)
 
 ## Adds a string to Log file
-static func LOG(string) -> void:
+## Not to be used directly
+static func _log(string) -> void:
 	var data = Save.load_from_json(PATH)
 	
 	## Add the new log at current time
@@ -56,5 +61,8 @@ static func LOG(string) -> void:
 	data["info"]["memory_info"] = OS.get_memory_info()
 	data["info"]["static_memory_usage"] = OS.get_static_memory_usage()
 	data["info"]["ticks_msecs"] = ticks
-	
+	data["info"]["window_size"] = DisplayServer.window_get_size()
+	data["info"]["screen_size"] = DisplayServer.screen_get_size()
+	data["info"]["refresh_rate"] = DisplayServer.screen_get_refresh_rate()
+	data["info"]["fps"] = Engine.get_frames_per_second()
 	Save.save_to_json(data, PATH)
