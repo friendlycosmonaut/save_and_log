@@ -25,5 +25,5 @@ var player = Save.load_from_json("user_save_1/player")
 ```
 Log.PRINT("Game starting up...")
 Log.TODO("Inventory should appear, work incomplete.") 
-Log.ERROR("This code path should not have run - we are crashing on purpose to alert dev!")
+Log.CRASH("This code path should not have run - we are crashing on purpose to alert dev!")
 ```
