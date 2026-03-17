@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bx5kn2rx7knl6"]
+
+[ext_resource type="Script" uid="uid://nw4d2ldvtbi5" path="res://demo.gd" id="1_0bhed"]
+[ext_resource type="Texture2D" uid="uid://dnm4mslogy3vj" path="res://icon.svg" id="1_5hfv0"]
+
+[sub_resource type="Theme" id="Theme_5hfv0"]
+default_font_size = 40
+
+[node name="Control" type="Control" unique_id=528759639]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_5hfv0")
+script = ExtResource("1_0bhed")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=596485436]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5hfv0")
+
+[node name="Label" type="Label" parent="Icon" unique_id=527758215]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 30
+text = "0, 0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1139316618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="Control" parent="VBoxContainer" unique_id=1851990317]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1595687378]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1896287075]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1735543813]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
+
+[node name="Wipe" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=572221608]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wipe"
+
+[node name="Play" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=747456584]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.71158934, 0.24166277, 1.92523e-07, 1)
+text = "Play Game"
+
+[node name="Crash" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1754486265]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Crash"
+
+[node name="Bottom" type="Control" parent="VBoxContainer" unique_id=1977645877]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Clicks" type="Label" parent="." unique_id=2019327020]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_bottom = 55.0
+grow_horizontal = 0
+text = "Clicks: 0"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Wipe" to="." method="_on_wipe_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Crash" to="." method="_on_crash_pressed"]
